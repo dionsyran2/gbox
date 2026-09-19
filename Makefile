@@ -31,9 +31,9 @@ ifeq ($(TARGET_OS), Windows)
               -lole32 -luuid -lshell32
 
     ifeq ($(HOST_OS), Linux)
-        CXX = x86_64-w64-mingw32-g++
+        CXX ?= x86_64-w64-mingw32-g++
     else
-        CXX = g++
+        CXX ?= g++
     endif
 else
     TARGET_EXT =
@@ -43,7 +43,7 @@ else
     CXXFLAGS += $(shell pkg-config --cflags gtk+-3.0)
 
     ifeq ($(HOST_OS), Windows)
-        CXX = wsl g++
+        CXX ?= wsl g++
     endif
 endif
 
@@ -93,4 +93,3 @@ $(OBJDIR)/$(VENDORDIR)/%.o: $(VENDORDIR)/%.cpp
 
 clean:
 	$(RM) $(call FIXPATH,$(OBJS))
-	$(RM) $(call FIXPATH,$(TARGET))
