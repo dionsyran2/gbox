@@ -10,10 +10,10 @@ To compile gbox, you will need 2 things:
 A compiler. The Makefile uses mingw on windows and g++ on linux.
 You can change the compiler by setting the CXX Enviroment Variable!
 
-The opengl library. If you are compiling on windows, this should not be needed.
-If you are on linux though... you must install it.
-Example Command:
-    ```sudo apt install libglfw3-dev```
+The GLFW library.
+Example Commands:
+    linux: ```sudo apt install libglfw3-dev```
+    windows: ```pacman -S mingw-w64-x86_64-glfw```
  
 #### After all of these, you can just run ```make``` or ```make all``` to compile!
 # Supported Features
