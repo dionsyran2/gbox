@@ -23,7 +23,7 @@ namespace frontend {
             return -1;
         }
 
-        window = glfwCreateWindow(640, 480, "GBEmu", nullptr, nullptr);
+        window = glfwCreateWindow(640, 480, "GBox", nullptr, nullptr);
         if (!window) {
             glfwTerminate();
             fprintf(stderr, "Failed to create window instance!\n");

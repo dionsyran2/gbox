@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <dmg_boot.h>
+
 
 cartridge_t cartridge = { 0 };
 
@@ -82,9 +84,13 @@ int cartridge_t::load_rom(const char* filename) {
 	return 0;
 }
 
-
+bool boot_rom_active = true;
 
 uint8_t cartridge_read(uint16_t address) {
+    if (address < 0x100 && boot_rom_active) {
+        return dmg_boot_bin[address];
+    }
+
     uint8_t* data = (uint8_t*)cartridge.cartridge_data;
 
     if (address < 0x4000) return data[address];
@@ -210,6 +216,16 @@ void cartridge_write(uint16_t address, uint8_t value) {
     }
 }
 
+void boot_write(uint16_t address, uint8_t value) {
+    if (value & 0x01)
+        boot_rom_active = false;
+}
+
+uint8_t boot_read(uint16_t address) {
+    return 0xFF;
+}
+
+REGISTER_MEMORY_REGION(boot_read, boot_write, 0xFF50, 0xFF50); // Bootloader
 REGISTER_MEMORY_REGION(cartridge_read, cartridge_write, 0x0000, 0x7FFF); // ROM Banks 0 and 1+
 REGISTER_MEMORY_REGION(cartridge_read, cartridge_write, 0xA000, 0xBFFF); // Cartridge SRAM
 

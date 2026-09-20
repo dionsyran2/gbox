@@ -60,13 +60,6 @@ void emulator_thread() {
             elapsed = frame_end - frame_start;
             std::this_thread::yield();
         }
-        /*if (elapsed.count() < FRAME_TIME_MS) {
-            std::this_thread::sleep_for(
-                std::chrono::duration<double, std::milli>(FRAME_TIME_MS - elapsed.count())
-            );
-
-
-        }*/
     }
 
     apu.uninitialize();

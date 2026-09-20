@@ -14,13 +14,16 @@ uint16_t interrupt_service_routines[] = {
 	0x0060, // ISR 4 (Joypad)
 };
 
+extern bool boot_rom_active;
 void cpu_t::reset() {
-	this->registers.AF = 0x01B0;
+	/*this->registers.AF = 0x01B0;
 	this->registers.BC = 0x0013;
 	this->registers.DE = 0x00D8;
 	this->registers.HL = 0x014D;
 	this->registers.SP = 0xFFFE;
-	this->registers.PC = 0x100;
+	this->registers.PC = 0x100;*/
+	boot_rom_active = true;
+	this->registers.PC = 0x0000;
 	this->registers.IME = false;
 	this->halted = false;
 

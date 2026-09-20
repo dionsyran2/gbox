@@ -67,7 +67,7 @@ OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC_FILES)) \
        $(patsubst $(VENDORDIR)/%.cpp, $(OBJDIR)/$(VENDORDIR)/%.o, $(VENDOR_FILES))
 
 
-TARGET = $(BINDIR)/gbemu$(TARGET_EXT)
+TARGET = $(BINDIR)/gbox$(TARGET_EXT)
 
 .PHONY: all clean dirs
 
