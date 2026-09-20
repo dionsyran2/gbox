@@ -28,7 +28,7 @@ ifeq ($(TARGET_OS), Windows)
     TARGET_EXT = .exe
     
     LDFLAGS = -lglfw3 -lgdi32 -lopengl32 -luser32 \
-              -lole32 -luuid -lshell32
+              -lole32 -luuid -lshell32 -mwindows
 
     ifeq ($(HOST_OS), Linux)
         CXX ?= x86_64-w64-mingw32-g++
